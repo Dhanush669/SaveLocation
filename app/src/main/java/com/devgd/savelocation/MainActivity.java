@@ -84,12 +84,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void add(View view) {
-        String time;
-        time= Calendar.getInstance().getTime().getHours()+" : "+Calendar.getInstance().getTime().getMinutes();
-        LocationEntity entity=new LocationEntity(String.valueOf(latLng.longitude),
-                String.valueOf(latLng.latitude),time);
-        viewModel.insert(entity);
-        Toast.makeText(this, "Added to Check-in List", Toast.LENGTH_SHORT).show();
+        if(latLng!=null) {
+            String time;
+            time = Calendar.getInstance().getTime().getHours() + " : " + Calendar.getInstance().getTime().getMinutes();
+            LocationEntity entity = new LocationEntity(String.valueOf(latLng.longitude),
+                    String.valueOf(latLng.latitude), time);
+            viewModel.insert(entity);
+            Toast.makeText(this, "Added to Check-in List", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void checkHistory(View view) {
