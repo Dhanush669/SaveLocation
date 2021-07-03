@@ -41,8 +41,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.displayMap);
-        fClient = LocationServices.getFusedLocationProviderClient(this);
 
         viewModel=new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.
                 getInstance(this.getApplication())).get(LocationViewModel.class);
@@ -63,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
             reqPer();
             return;
         }
+        supportMapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.displayMap);
+        fClient = LocationServices.getFusedLocationProviderClient(this);
         Task<Location> task = fClient.getLastLocation();
         task.addOnSuccessListener(new OnSuccessListener<Location>() {
             @Override
